@@ -12,8 +12,12 @@ import {
   useFormContext,
 } from 'react-hook-form';
 
-import { cn } from '../../lib/utils';
 import { Label } from './label';
+
+// Simple class name merger
+const cn = (...classes: (string | undefined | null | false)[]) => {
+  return classes.filter(Boolean).join(' ');
+};
 
 const Form = FormProvider;
 
