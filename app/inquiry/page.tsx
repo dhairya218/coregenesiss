@@ -66,18 +66,14 @@ export default function InquiryPage() {
   }
 
   return (
-    <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <motion.div 
-        className="max-w-3xl mx-auto text-center mb-12"
-        initial="hidden"
-        animate="visible"
-        variants={fadeIn}
-      >
-        <h1 className="text-4xl font-bold tracking-tight text-primary mb-4">Get in Touch</h1>
-        <p className="text-lg text-muted-foreground">
-          Let's discuss how we can help your business grow with our IT solutions.
+    <main className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
+      <div className="prose max-w-none">
+        <p>
+          Have questions or need assistance? We're here to help. Fill out the form
+          below and we'll get back to you as soon as possible.
         </p>
-      </motion.div>
+      </div>
 
       <div className="max-w-2xl mx-auto">
         {!isSubmitted ? (
@@ -210,6 +206,6 @@ export default function InquiryPage() {
           </motion.div>
         )}
       </div>
-    </div>
+    </main>
   );
 }

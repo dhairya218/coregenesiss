@@ -41,66 +41,15 @@ const faqs = [
   }
 ];
 
-export default function FaqsPage() {
+export default function FAQsPage() {
   return (
-    <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <motion.div 
-        className="max-w-3xl mx-auto text-center mb-12"
-        initial="hidden"
-        animate="visible"
-        variants={fadeIn}
-      >
-        <h1 className="text-4xl font-bold tracking-tight text-primary mb-4">Frequently Asked Questions</h1>
-        <p className="text-lg text-muted-foreground">
-          Find answers to common questions about our services and approach.
+    <main className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold mb-6">Frequently Asked Questions</h1>
+      <div className="prose max-w-none">
+        <p>
+          Find answers to common questions about our services and solutions.
         </p>
-      </motion.div>
-
-      <motion.div 
-        className="max-w-3xl mx-auto"
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-      >
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((faq, index) => (
-            <motion.div key={index} variants={fadeIn} custom={index}>
-              <AccordionItem value={`item-${index}`} className="border-b border-border">
-                <AccordionTrigger className="text-left font-medium py-4">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="pb-4 pt-1 text-muted-foreground">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            </motion.div>
-          ))}
-        </Accordion>
-      </motion.div>
-      
-      <motion.div 
-        className="max-w-2xl mx-auto mt-16 text-center"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-      >
-        <h2 className="text-2xl font-semibold mb-4">Still have questions?</h2>
-        <p className="mb-6 text-muted-foreground">
-          We're here to help. Contact us for more information about our services or to discuss your specific needs.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/inquiry">
-            <Button size="lg">
-              Get in Touch
-            </Button>
-          </Link>
-          <Link href="#" onClick={(e) => e.preventDefault()}>
-            <Button variant="outline" size="lg" className="group">
-              Book a Free Consultation
-            </Button>
-          </Link>
-        </div>
-      </motion.div>
-    </div>
+      </div>
+    </main>
   );
 }

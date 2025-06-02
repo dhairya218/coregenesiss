@@ -60,72 +60,14 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <motion.div 
-        className="max-w-3xl mx-auto text-center mb-12"
-        initial="hidden"
-        animate="visible"
-        variants={fadeIn}
-      >
-        <h1 className="text-4xl font-bold tracking-tight text-primary mb-4">Our Services</h1>
-        <p className="text-lg text-muted-foreground">
-          Practical IT solutions designed to help your business grow and succeed
+    <main className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold mb-6">Our Services</h1>
+      <div className="prose max-w-none">
+        <p>
+          Discover our comprehensive range of IT services designed to help your
+          business thrive in the digital age.
         </p>
-      </motion.div>
-
-      <motion.div 
-        className="grid gap-8 md:grid-cols-2 lg:grid-cols-2"
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-      >
-        {services.map((service, index) => (
-          <motion.div key={service.id} variants={fadeIn} custom={index}>
-            <Card className="h-full transition-all duration-300 hover:shadow-lg overflow-hidden border-2 hover:border-primary/20">
-              <CardHeader className="pb-2">
-                <div className="mb-3">{service.icon}</div>
-                <CardTitle className="text-2xl">{service.title}</CardTitle>
-                <CardDescription>{service.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {service.points.map((point, i) => (
-                    <li key={i} className="flex items-start">
-                      <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary/70"></div>
-                      <span className="text-sm text-muted-foreground">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Link href="/inquiry" className="w-full">
-                  <Button className="w-full group">
-                    Enquire Now
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
-          </motion.div>
-        ))}
-      </motion.div>
-      
-      <motion.div
-        className="mt-16 max-w-3xl mx-auto text-center py-8 px-6 rounded-lg bg-secondary"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-      >
-        <h2 className="text-2xl font-semibold mb-4">Not sure what you need?</h2>
-        <p className="mb-6 text-muted-foreground">
-          Get in touch for a free consultation to discuss your business needs and how we can help.
-        </p>
-        <Link href="/inquiry">
-          <Button size="lg" variant="default">
-            Book a Free Consultation
-          </Button>
-        </Link>
-      </motion.div>
-    </div>
+      </div>
+    </main>
   );
 }
