@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import { fadeIn } from '@/lib/animations';
+import { staggerContainer, fadeIn } from '../../app/utils/animations';
 
 const testimonials = [
   {

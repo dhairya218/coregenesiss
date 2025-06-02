@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { Database, Globe, HardDrive, BarChart3, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { staggerContainer, fadeIn } from '@/lib/animations';
+import { staggerContainer, fadeIn } from '../../app/utils/animations';
 
 const services = [
   {

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { fadeIn } from '@/lib/animations';
+import { fadeIn } from '../../app/utils/animations';
 
 export default function CtaSection() {
   return (

@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { staggerContainer, fadeIn } from '@/lib/animations';
-import { getSuccessStories, type SuccessStory } from '@/lib/api';
+import { staggerContainer, fadeIn } from '../utils/animations';
+import { getSuccessStories, type SuccessStory } from '../utils/api';
 import { toast } from '@/components/ui/use-toast';
 
 const API_BASE_URL = 'http://localhost:8000';

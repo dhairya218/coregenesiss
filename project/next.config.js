@@ -19,10 +19,7 @@ const nextConfig = {
   images: {
     domains: ['localhost', 'coregenesis-backend.onrender.com'],
     unoptimized: true,
-  },
-  experimental: {
-    appDir: true,
-  },
+  }
 };
 
 module.exports = nextConfig;
