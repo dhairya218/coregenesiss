@@ -18,8 +18,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { CheckCircle } from 'lucide-react';
-import { fadeIn } from '@/lib/animations';
-import { submitInquiry } from '@/lib/api';
+import { fadeIn } from '../lib/animations';
+import { submitInquiry } from '../lib/api';
 import { toast } from '@/components/ui/use-toast';
 
 const formSchema = z.object({
