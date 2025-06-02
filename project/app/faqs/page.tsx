@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { fadeIn, staggerContainer } from '@/lib/animations';
+import { fadeIn, staggerContainer } from '../../lib/animations';
 
 const faqs = [
   {
