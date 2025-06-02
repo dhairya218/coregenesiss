@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { fadeIn } from '../../lib/animations';
+import { fadeIn } from '@/lib/animations';
 
 export default function AboutPage() {
   return (
