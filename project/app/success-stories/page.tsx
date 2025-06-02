@@ -1,14 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { staggerContainer, fadeIn } from '../utils/animations';
-import { getSuccessStories, type SuccessStory } from '../utils/api';
 import { toast } from '@/components/ui/use-toast';
 
 const API_BASE_URL = 'http://localhost:8000';
@@ -28,13 +25,14 @@ const getImageUrl = (imagePath: string | null) => {
 };
 
 export default function SuccessStoriesPage() {
-  const [stories, setStories] = useState<SuccessStory[]>([]);
+  const [stories, setStories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const data = await getSuccessStories();
+        const response = await fetch(`${API_BASE_URL}/api/success-stories/`);
+        const data = await response.json();
         setStories(data);
       } catch (error) {
         toast({
@@ -52,17 +50,12 @@ export default function SuccessStoriesPage() {
 
   return (
     <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <motion.div 
-        className="max-w-3xl mx-auto text-center mb-12"
-        initial="hidden"
-        animate="visible"
-        variants={fadeIn}
-      >
+      <div className="max-w-3xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold tracking-tight text-primary mb-4">Success Stories</h1>
         <p className="text-lg text-muted-foreground">
           Real results for real businesses. Explore how we've helped our clients achieve their goals.
         </p>
-      </motion.div>
+      </div>
 
       {isLoading ? (
         <div className="text-center py-12">
@@ -74,14 +67,9 @@ export default function SuccessStoriesPage() {
           <p className="text-muted-foreground">No success stories available at the moment.</p>
         </div>
       ) : (
-        <motion.div 
-          className="grid gap-8 md:grid-cols-2"
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-        >
+        <div className="grid gap-8 md:grid-cols-2">
           {stories.map((story, index) => (
-            <motion.div key={story.id} variants={fadeIn} custom={index}>
+            <div key={story.id}>
               <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300">
                 <div className="relative h-48 w-full">
                   <Image 
@@ -120,17 +108,12 @@ export default function SuccessStoriesPage() {
                   </Button>
                 </CardFooter>
               </Card>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       )}
       
-      <motion.div
-        className="mt-16 max-w-3xl mx-auto text-center py-8 px-6 rounded-lg bg-secondary"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-      >
+      <div className="mt-16 max-w-3xl mx-auto text-center py-8 px-6 rounded-lg bg-secondary">
         <h2 className="text-2xl font-semibold mb-4">Ready to become our next success story?</h2>
         <p className="mb-6 text-muted-foreground">
           Let's discuss how we can help your business achieve similar results.
@@ -140,7 +123,7 @@ export default function SuccessStoriesPage() {
             Start Your Project
           </Button>
         </Link>
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,9 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import { staggerContainer, fadeIn } from '../../app/utils/animations';
 
 const testimonials = [
   {
@@ -36,31 +34,13 @@ const testimonials = [
 
 export default function TestimonialSection() {
   const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 200 : -200,
-      opacity: 0
-    }),
-    center: {
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 200 : -200,
-      opacity: 0
-    })
-  };
-
   const nextTestimonial = () => {
-    setDirection(1);
     setCurrent((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
   };
 
   const prevTestimonial = () => {
-    setDirection(-1);
     setCurrent((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   };
 
@@ -85,59 +65,39 @@ export default function TestimonialSection() {
   return (
     <section className="py-16 bg-secondary/50">
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-        <motion.div 
-          className="max-w-3xl mx-auto text-center mb-12"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeIn}
-        >
+        <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-4">Client Testimonials</h2>
           <p className="text-lg text-muted-foreground">
             Hear what our clients have to say about working with us.
           </p>
-        </motion.div>
+        </div>
 
         <div className="max-w-4xl mx-auto">
           <div className="relative overflow-hidden py-6">
-            <AnimatePresence custom={direction} mode="wait">
-              <motion.div
-                key={current}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.4 }
-                }}
-                className="relative"
-              >
-                <Card className="border-none bg-transparent shadow-none">
-                  <CardContent className="flex flex-col items-center p-6">
-                    <Quote className="h-12 w-12 text-primary/20 mb-6" />
-                    <blockquote className="text-center text-xl italic font-medium text-foreground mb-6">
-                      "{testimonials[current].quote}"
-                    </blockquote>
-                    
-                    <div className="flex items-center">
-                      <div className="h-12 w-12 rounded-full overflow-hidden mr-4">
-                        <img 
-                          src={testimonials[current].image} 
-                          alt={testimonials[current].name} 
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                      <div className="text-left">
-                        <div className="font-semibold">{testimonials[current].name}</div>
-                        <div className="text-sm text-muted-foreground">{testimonials[current].role}</div>
-                      </div>
+            <div className="relative">
+              <Card className="border-none bg-transparent shadow-none">
+                <CardContent className="flex flex-col items-center p-6">
+                  <Quote className="h-12 w-12 text-primary/20 mb-6" />
+                  <blockquote className="text-center text-xl italic font-medium text-foreground mb-6">
+                    "{testimonials[current].quote}"
+                  </blockquote>
+                  
+                  <div className="flex items-center">
+                    <div className="h-12 w-12 rounded-full overflow-hidden mr-4">
+                      <img 
+                        src={testimonials[current].image} 
+                        alt={testimonials[current].name} 
+                        className="h-full w-full object-cover"
+                      />
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </AnimatePresence>
+                    <div className="text-left">
+                      <div className="font-semibold">{testimonials[current].name}</div>
+                      <div className="text-sm text-muted-foreground">{testimonials[current].role}</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
             {/* Navigation Arrows */}
             <div className="absolute inset-0 flex items-center justify-between pointer-events-none">
@@ -165,10 +125,7 @@ export default function TestimonialSection() {
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => {
-                  setDirection(index > current ? 1 : -1);
-                  setCurrent(index);
-                }}
+                onClick={() => setCurrent(index)}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   index === current ? 'w-6 bg-primary' : 'w-2 bg-primary/30'
                 }`}

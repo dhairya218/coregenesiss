@@ -1,11 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Database, Globe, HardDrive, BarChart3, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { staggerContainer, fadeIn } from '../../app/utils/animations';
 
 const services = [
   {
@@ -34,33 +32,16 @@ export default function ServiceSection() {
   return (
     <section className="py-16 bg-background">
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-        <motion.div 
-          className="max-w-3xl mx-auto text-center mb-12"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeIn}
-        >
+        <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-4">What We Do</h2>
           <p className="text-lg text-muted-foreground">
             We provide practical IT solutions that help businesses operate more efficiently and grow sustainably.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div 
-          className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => (
-            <motion.div 
-              key={index}
-              variants={fadeIn}
-              custom={index}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            >
+            <div key={index}>
               <Card className="h-full flex flex-col border-2 hover:border-primary/20 transition-all duration-300">
                 <CardHeader>
                   <div className="mb-2">{service.icon}</div>
@@ -78,9 +59,9 @@ export default function ServiceSection() {
                   </Link>
                 </CardFooter>
               </Card>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

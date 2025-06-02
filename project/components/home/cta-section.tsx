@@ -1,22 +1,14 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { fadeIn } from '../../app/utils/animations';
 
 export default function CtaSection() {
   return (
     <section className="py-16 bg-background">
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-        <motion.div
-          className="max-w-4xl mx-auto bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-2xl p-8 sm:p-12 shadow-sm relative overflow-hidden"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeIn}
-        >
+        <div className="max-w-4xl mx-auto bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-2xl p-8 sm:p-12 shadow-sm relative overflow-hidden">
           {/* Decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
             <div className="absolute top-10 right-10 w-40 h-40 bg-chart-1/20 rounded-full blur-3xl"></div>
@@ -45,7 +37,7 @@ export default function CtaSection() {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
