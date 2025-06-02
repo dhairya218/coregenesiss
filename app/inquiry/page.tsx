@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -18,8 +17,6 @@ import { Input } from '../../components/ui/input';
 import { Textarea } from '../../components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
 import { CheckCircle } from 'lucide-react';
-import { fadeIn } from '../utils/animations';
-import { submitInquiry } from '../utils/api';
 import { toast } from '../../components/ui/use-toast';
 
 const formSchema = z.object({
@@ -48,7 +45,8 @@ export default function InquiryPage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsSubmitting(true);
-      await submitInquiry(values);
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
       setIsSubmitted(true);
       toast({
         title: "Success!",
@@ -77,11 +75,7 @@ export default function InquiryPage() {
 
       <div className="max-w-2xl mx-auto">
         {!isSubmitted ? (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="mt-8">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -181,14 +175,9 @@ export default function InquiryPage() {
                 </Button>
               </form>
             </Form>
-          </motion.div>
+          </div>
         ) : (
-          <motion.div
-            className="text-center py-16 px-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="text-center py-16 px-4">
             <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-primary/10">
               <CheckCircle className="h-12 w-12 text-primary" />
             </div>
@@ -203,7 +192,7 @@ export default function InquiryPage() {
             >
               Submit Another Inquiry
             </Button>
-          </motion.div>
+          </div>
         )}
       </div>
     </main>
