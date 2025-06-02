@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import { cn } from '../../lib/utils';
 import ConsultModal from '@/components/modals/consult-modal';
 
 const navItems = [
